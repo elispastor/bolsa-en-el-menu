@@ -1,145 +1,120 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Negocio - Nueva Generación</title>
-    <style>
-        /* Tus estilos existentes + nuevo botón ingresos */
-        .ingresos-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(255,215,0,0.4);
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-        .ingresos-btn:hover { transform: scale(1.1); }
-        
-        .oficina-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-        }
-        .oficina-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            animation: modalPop 0.3s;
-        }
-        @keyframes modalPop { from { scale: 0.7; opacity: 0; } to { scale: 1; opacity: 1; } }
-        
-        .ganancias { 
-            font-size: 2.5em; 
-            color: #28a745; 
-            font-weight: bold;
-            margin: 20px 0;
-        }
-        .referidos-lista {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .cerrar { 
-            background: #dc3545; 
-            color: white; 
-            border: none; 
-            padding: 10px 20px; 
-            border-radius: 25px; 
-            cursor: pointer;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <!-- TODO TU CONTENIDO EXISTENTE AQUÍ -->
+.oficina-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 2000;
+    }
+    .oficina-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        animation: modalPop 0.3s;
+    }
+    @keyframes modalPop { from { scale: 0.7; opacity: 0; } to { scale: 1; opacity: 1; } }
     
-    <!-- NUEVO BOTÓN INGRESOS -->
-    <button class="ingresos-btn" onclick="abrirOficina()" title="Tus Ingresos">
-        💰
-    </button>
-    
-    <!-- OFICINA VIRTUAL -->
-    <div id="oficinaModal" class="oficina-modal">
-        <div class="oficina-content">
-            <h2>🏢 Oficina Virtual</h2>
-            <p><strong>¡Tus ganancias por referidos!</strong></p>
-            
-            <div class="ganancias" id="totalGanancias">$ 5.000</div>
-            <p style="color: #666;">Ingresos por publicidad referida</p>
-            
-            <div class="referidos-lista">
-                <h4>👥 Últimos referidos:</h4>
-                <div id="listaReferidos">
-                    <p>Doña Edilsa ✓ $2.500 (20%)</p>
-                    <p>Panadería La 40 ✓ $2.500 (20%)</p>
-                </div>
-            </div>
-            
-            <p style="font-size: 0.9em; color: #28a745; margin-top: 15px;">
-                📈 Plan actual: Básico (20%)<br>
-                💎 Plan Élite (40%): +$10.000/mes posible
-            </p>
-            
-            <button class="cerrar" onclick="cerrarOficina()">Cerrar Oficina</button>
-        </div>
-    </div>
+    .ganancias { 
+        font-size: 2.5em; 
+        color: #28a745; 
+        font-weight: bold;
+        margin: 20px 0;
+    }
+    .referidos-lista {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .cerrar { 
+        background: #dc3545; 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        border-radius: 25px; 
+        cursor: pointer;
+        margin-top: 20px;
+    }
+</style>
+<!-- NUEVO BOTÓN INGRESOS -->
+<button class="ingresos-btn" onclick="abrirOficina()" title="Tus Ingresos">
+    💰
+</button>
 
-    <script>
-        // DATOS SIMULADOS (después conectas a tu base de datos)
-        let ganancias = 5000;
-        let referidos = [
-            {nombre: "Doña Edilsa", monto: 2500, comision: "20%"},
-            {nombre: "Panadería La 40", monto: 2500, comision: "20%"}
-        ];
+<!-- OFICINA VIRTUAL -->
+<div id="oficinaModal" class="oficina-modal">
+    <div class="oficina-content">
+        <h2>🏢 Oficina Virtual</h2>
+        <p><strong>¡Tus ganancias por referidos!</strong></p>
         
-        function abrirOficina() {
-            document.getElementById('oficinaModal').style.display = 'block';
-            actualizarOficina();
-        }
+        <div class="ganancias" id="totalGanancias">$ 5.000</div>
+        <p style="color: #666;">Ingresos por publicidad referida</p>
         
-        function cerrarOficina() {
-            document.getElementById('oficinaModal').style.display = 'none';
-        }
+        <div class="referidos-lista">
+            <h4>👥 Últimos referidos:</h4>
+            <div id="listaReferidos">
+                <p>Doña Edilsa ✓ $2.500 (20%)</p>
+                <p>Panadería La 40 ✓ $2.500 (20%)</p>
+            </div>
+        </div>
         
-        function actualizarOficina() {
-            document.getElementById('totalGanancias').textContent = `$${ganancias.toLocaleString()}`;
-            
-            const lista = document.getElementById('listaReferidos');
-            lista.innerHTML = referidos.map(r => 
-                `<p>${r.nombre} ✓ $${r.monto.toLocaleString()} (${r.comision})</p>`
-            ).join('');
-        }
+        <p style="font-size: 0.9em; color: #28a745; margin-top: 15px;">
+            📈 Plan actual: Básico (20%)<br>
+            💎 Plan Élite (40%): +$10.000/mes posible
+        </p>
         
-        // Cierra modal al hacer clic fuera
-        window.onclick = function(event) {
-            if (event.target.classList.contains('oficina-modal')) {
-                cerrarOficina();
-            }
+        <button class="cerrar" onclick="cerrarOficina()">Cerrar Oficina</button>
+    </div>
+</div>
+
+<script>
+    // DATOS SIMULADOS (después conectas a tu base de datos)
+    let ganancias = 5000;
+    let referidos = [
+        {nombre: "Doña Edilsa", monto: 2500, comision: "20%"},
+        {nombre: "Panadería La 40", monto: 2500, comision: "20%"}
+    ];
+    
+    function abrirOficina() {
+        document.getElementById('oficinaModal').style.display = 'block';
+        actualizarOficina();
+    }
+    
+    function cerrarOficina() {
+        document.getElementById('oficinaModal').style.display = 'none';
+    }
+    
+    function actualizarOficina() {
+        document.getElementById('totalGanancias').textContent = `$${ganancias.toLocaleString()}`;
+        
+        const lista = document.getElementById('listaReferidos');
+        lista.innerHTML = referidos.map(r => 
+            `<p>${r.nombre} ✓ $${r.monto.toLocaleString()} (${r.comision})</p>`
+        ).join('');
+    }
+    
+    // Cierra modal al hacer clic fuera
+    window.onclick = function(event) {
+        if (event.target.classList.contains('oficina-modal')) {
+            cerrarOficina();
         }
-    </script>
-</body>
-</html>
+    }
+</script>
+
+Hace 13 minutos
+Claude Agent
+
+Claude Agent trabaja 13m 13s
+
+1 Acción
